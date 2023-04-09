@@ -1,0 +1,5 @@
+target/
+cargo.lock
+.env
+/tls/fullchain.pem
+/tls/privkey.pem
