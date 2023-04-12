@@ -1,0 +1,167 @@
+:root {
+	--accent-color: #F8312F;
+}
+
+@media print {
+	.one-page {
+		box-sizing: border-box;
+		display: block;
+		height: 100vh;
+		margin: 0;
+		padding: 0;
+		page-break-after: always;
+		page-break-before: always;
+		position: relative;
+		width: 100%;
+	}
+	
+	.one-page:first-of-type {
+		page-break-before: avoid;
+	}
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+ul {
+	list-style-type: disc;
+	padding-left: 40px;
+}
+
+html, body {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	height: 100%;
+	line-height: 1.2em;
+}
+
+#header {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	line-height: 40px;
+	width: 100%;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	margin: 0 auto;
+	width: 800px;
+}
+
+.container > div {
+	display: flex;
+}
+
+.sidebar {
+	flex: 1;
+}
+
+.content.right {
+	flex-direction: column;
+}
+
+.content-item-title {
+    display: flex;
+    justify-content: space-between;
+	width: 100%;
+}
+
+.content-item-title > div > * {
+	margin: 5px 0;
+}
+
+.content {
+	flex: 3;
+}
+
+.content-item {
+	margin: 15px 0 25px 0;
+}
+
+.sidebar {
+	flex-direction: column;
+}
+
+.sidebar-item {
+	margin: 10px 0;
+}
+
+.sidebar-item-list {
+	line-height: 0.8em;
+}
+
+.left {
+	display: flex;
+	height: 100%;
+	overflow: auto;
+}
+
+.right {
+	display: flex;
+	height: 100%;
+	overflow: auto;
+}
+
+#anchor-wrapper{
+	align-items: center;
+	display: flex;
+	font-size: 30px;
+	height: 50px;
+	width: 100%;
+}
+
+#anchor-wrapper > div {
+	justify-content: stretch;
+	margin: 30px;
+	text-align: center;
+	width: 100%;
+}
+
+#name {
+	font-size: 40px;
+	font-weight: bold;
+}
+
+#title {
+	font-size: 20px;
+}
+
+h1, h2, h3 {
+	color: var(--accent-color);
+}
+
+.accented {
+	color: var(--accent-color);
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+	margin: 0;
+	padding: 4px;
+}
+
+h1 { font-size: 1.75em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.25em; }
+h4 { font-size: 1em; }
+
+
+li {
+	margin: 8px 0;
+}
+
+.pagelabel {
+	flex-direction: row-reverse;
+}
+
+
+a {
+	color: var(--accent-color);
+}

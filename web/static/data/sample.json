@@ -1,0 +1,108 @@
+{
+	"header": {
+		"name": "Ferris",
+		"title": "Rustacean",
+		"contact": {
+			"website": "rustacean.net",
+			"email": "ferris@rustacean.net",
+			"phone": "(123) 456-7890",
+			"location": "Crabville, ST"
+		},
+		"anchor": "🦀"
+	},
+	"pages": [
+		{
+			"sidebar": [
+				{
+					"label": "Skills",
+					"items": [
+						"Crab Whispering",
+						"Shell Polishing"
+					]
+				},
+				{
+					"label": "Tools",
+					"items": [
+						"Crabulator",
+						"Pincer Pro"
+					]
+				},
+				{
+					"label": "Hobbies",
+					"items": [
+						"Beachcombing",
+						"Seaweed Tasting"
+					]
+				}
+			],
+			"content": [
+				{
+					"label": "Underwater Adventures",
+					"items": [
+						{
+							"title": "Shell Engineer",
+							"subtitle": "Crustacean Constructions Inc.",
+							"timeframe": "2019 - Present",
+							"bullets": [
+								"Designed and built underwater habitats for various crab species",
+								"Implemented sustainable materials to reduce environmental impact on aquatic life",
+								"Collaborated with marine biologists to ensure habitats support crab behavior and growth",
+								"Developed innovative solutions to prevent shell damage during molting season"
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"sidebar": [
+				{
+					"label": "Friends",
+					"items": [
+						"Shelly",
+						"Clawdia"
+					]
+				},
+				{
+					"label": "Favorite Spots",
+					"items": [
+						"Rocky Shore",
+						"Kelp Forest"
+					]
+				},
+				{
+					"label": "Treasures",
+					"items": [
+						"Golden Seashell",
+						"Crystalline Coral"
+					]
+				}
+			],
+			"content": [
+				{
+					"label": "Underwater Expeditions",
+					"items": [
+						{
+							"title": "Coral Restoration",
+							"subtitle": "Volunteer",
+							"timeframe": "2022",
+							"bullets": [
+								"Helped in regrowing coral reefs",
+								"Participated in underwater clean-up events"
+							]
+						},
+						{
+							"title": "Deep Sea Exploration",
+							"subtitle": "Explorer",
+							"timeframe": "2023",
+							"bullets": [
+								"Discovered new species of crabs",
+								"Documented bioluminescent marine life"
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -6,21 +6,91 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>{{ data.header.name }}</title>
 	<link rel="stylesheet" href="style.css">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
-	<header>
-		<h1>{{ data.header.name }}</h1>
-		<h2>{{ data.header.title }}</h2>
-		<p>contact</p>
-	</header>
-	<main>
-		{% for page in data.pages %}
-		<div>
-			content here
+	{% for page in data.pages %}
+	<div class="one-page">
+		<div class="container">
+			{% if loop.index == 1 %}
+			<div id="header">
+				<div id="name">
+					{{ data.header.name }}
+				</div>
+				<div id="title">
+					{{ data.header.title }}
+				</div>
+				<div id="anchor-wrapper">
+					<div>
+						<hr>
+					</div>
+					{{ data.header.anchor }}
+					<div>
+						<hr>
+					</div>
+				</div>
+			</div>
+			{% endif %}
+			<div>
+				<div class="sidebar left">
+					{% for sidebaritem in page.sidebar %}
+					<div class="sidebar-item">
+						<h3>
+							{{ sidebaritem.label }}
+						</h3>
+						<ul class="sidebar-item-list">
+							{% for item in sidebaritem.items %}
+							<li>{{ item }}</li>
+							{% endfor %}
+						</ul>
+					</div>
+					{% endfor %}
+				</div>
+				<div class="content right">
+					{% for content in page.content %}
+					<div>
+						<h1>
+							{{ content.label }}
+						</h1>
+					</div>
+					<div>
+						{% for contentitem in content.items %}
+						<div class="content-item">
+							<div class="content-item-title">
+								<div>
+									<h3>
+										{{ contentitem.title }}
+									</h3>
+									<h4>
+										{{ contentitem.subtitle | safe }}
+									</h4>
+								</div>
+								<div>
+									{{ contentitem.timeframe }}
+								</div>
+							</div>
+							<div>
+								<ul>
+									{% for bullet in contentitem.bullets %}
+									<li>
+										{{ bullet | safe }}
+									</li>
+									{% endfor %}
+								</ul>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="pagelabel">
+				{{ loop.index }} / {{ data.pages | length }}
+			</div>
 		</div>
-		{% endfor %}
-	</main>
+	</div>
+	{% endfor %}
 </body>
 
 </html>

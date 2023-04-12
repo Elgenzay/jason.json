@@ -3,4 +3,6 @@ cargo.lock
 .env
 /tls/fullchain.pem
 /tls/privkey.pem
-web/json/*
+/web/static/data/*
+!/web/static/data/sample.json
+/web/static/favicon.ico
