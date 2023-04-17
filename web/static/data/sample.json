@@ -1,13 +1,23 @@
 {
+	"page_title": "Resume demo",
 	"header": {
 		"name": "Ferris",
 		"title": "Rustacean",
-		"contact": {
-			"website": "rustacean.net",
-			"email": "ferris@rustacean.net",
-			"phone": "(123) 456-7890",
-			"location": "Crabville, ST"
-		},
+		"contact": [
+			{
+				"link": "https://github.com/Elgenzay/jason.json",
+				"label": "Website",
+				"value": "github.com/Elgenzay/jason.json"
+			},
+			{
+				"label": "Email",
+				"env_var": "EMAIL"
+			},
+			{
+				"label": "Location",
+				"value": "Chesapeake Bay, MD"
+			}
+		],
 		"anchor": "🦀"
 	},
 	"pages": [
@@ -31,7 +41,8 @@
 					"label": "Hobbies",
 					"items": [
 						"Beachcombing",
-						"Seaweed Tasting"
+						"Seaweed Tasting",
+						"Jellyfishing"
 					]
 				}
 			],

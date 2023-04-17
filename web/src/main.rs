@@ -11,6 +11,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 struct Resume {
+	page_title: String,
 	pages: Vec<Page>,
 	header: Header,
 }
@@ -25,16 +26,15 @@ struct Page {
 struct Header {
 	name: String,
 	title: String,
-	contact: Contact,
+	contact: Vec<ContactItem>,
 	anchor: String,
 }
 
 #[derive(Serialize, Deserialize)]
-struct Contact {
-	website: String,
-	email: String,
-	phone: String,
-	location: String,
+struct ContactItem {
+	label: String,
+	value: Option<String>,
+	env_var: Option<String>,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -69,9 +69,23 @@ pub async fn static_pages(path: PathBuf) -> Option<NamedFile> {
 #[rocket::get("/")]
 pub fn page() -> Template {
 	let filename = std::env::var("FILE_NAME").expect("Missing environment variable: FILE_NAME");
+
 	let jsondata = std::fs::read_to_string(format!("static/data/{}", filename))
 		.expect("Unable to read JSON file");
-	let resume: Resume = serde_json::from_str(&jsondata).expect("Unable to parse JSON file");
+
+	let mut resume: Resume = serde_json::from_str(&jsondata).expect("Unable to parse JSON file");
+
+	for contact_item in &mut resume.header.contact {
+		if let Some(env_var) = &contact_item.env_var {
+			let value = std::env::var(env_var)
+				.unwrap_or_else(|_| panic!("Missing environment variable: {}", env_var));
+
+			let value_base64 = base64::encode(value);
+			let value_base64_rev = value_base64.chars().rev().collect();
+			contact_item.value = Some(value_base64_rev);
+		}
+	}
+
 	let mut context = HashMap::new();
 	context.insert("data", &resume);
 	Template::render("template", context)

@@ -4,9 +4,10 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>{{ data.header.name }}</title>
+	<title>{{ data.page_title }}</title>
 	<link rel="stylesheet" href="style.css">
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<script src="obfuscation.js"></script>
 </head>
 
 <body>
@@ -16,10 +17,37 @@
 			{% if loop.index == 1 %}
 			<div id="header">
 				<div id="name">
-					{{ data.header.name }}
+					{{ data.header.name | safe}}
 				</div>
 				<div id="title">
 					{{ data.header.title }}
+				</div>
+				<div id="contact">
+					{% for contact_item in data.header.contact %}
+					<div class="contact-item">
+						<div class="accented">
+							{{ contact_item.label }}
+						</div>
+						{% set class_name = "" %}
+						{% set is_obfuscated = false %}
+
+						{% if contact_item.env_var is defined and contact_item.env_var %}
+						{% set is_obfuscated = true %}
+						{% endif %}
+
+						{% if is_obfuscated %}
+						<div class="obfuscation-note">
+							obfuscating...
+							{% set class_name = "obfuscated" %}
+						</div>
+						{% endif %}
+
+						<div class="{{ class_name }}">
+							{{ contact_item.value }}
+						</div>
+
+					</div>
+					{% endfor %}
 				</div>
 				<div id="anchor-wrapper">
 					<div>
@@ -66,7 +94,7 @@
 										{{ contentitem.subtitle | safe }}
 									</h4>
 								</div>
-								<div>
+								<div class="timeframe">
 									{{ contentitem.timeframe }}
 								</div>
 							</div>
@@ -91,6 +119,11 @@
 		</div>
 	</div>
 	{% endfor %}
+	<div class="footer hide-from-print">
+		<a href="javascript:window.print();">
+			Print this document
+		</a>
+	</div>
 </body>
 
 </html>
