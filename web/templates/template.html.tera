@@ -43,7 +43,7 @@
 						{% endif %}
 
 						<div class="{{ class_name }}">
-							{{ contact_item.value }}
+							{{ contact_item.value | safe }}
 						</div>
 
 					</div>
