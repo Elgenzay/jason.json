@@ -2,28 +2,16 @@
 	--accent-color: #F8312F;
 }
 
-@media print {
-	.one-page {
-		box-sizing: border-box;
-		display: block;
-		height: 100vh;
-		margin: 0;
-		padding: 0;
-		page-break-after: always;
-		page-break-before: always;
-		position: relative;
-		width: 100%;
-	}
-	
-	.one-page:first-of-type {
-		page-break-before: avoid;
-	}
-}
-
 * {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+}
+
+html, body {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	height: 100%;
+	line-height: 1.2em;
 }
 
 ul {
@@ -31,10 +19,27 @@ ul {
 	padding-left: 40px;
 }
 
-html, body {
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
-	height: 100%;
-	line-height: 1.2em;
+h1, h2, h3 {
+	color: var(--accent-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+	margin: 0;
+	padding: 4px;
+}
+
+h1 { font-size: 1.75em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.25em; }
+h4 { font-size: 1em; }
+
+li {
+	margin: 8px 0;
+}
+
+a {
+	color: var(--accent-color);
 }
 
 #header {
@@ -44,68 +49,6 @@ html, body {
 	justify-content: center;
 	line-height: 40px;
 	width: 100%;
-}
-
-.container {
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	margin: 0 auto;
-	width: 800px;
-}
-
-.container > div {
-	display: flex;
-}
-
-.sidebar {
-	flex: 1;
-}
-
-.content.right {
-	flex-direction: column;
-}
-
-.content-item-title {
-    display: flex;
-    justify-content: space-between;
-	width: 100%;
-}
-
-.content-item-title > div > * {
-	margin: 5px 0;
-}
-
-.content {
-	flex: 3;
-}
-
-.content-item {
-	margin: 15px 0 25px 0;
-}
-
-.sidebar {
-	flex-direction: column;
-}
-
-.sidebar-item {
-	margin: 10px 0;
-}
-
-.sidebar-item-list {
-	line-height: 0.8em;
-}
-
-.left {
-	display: flex;
-	height: 100%;
-	overflow: auto;
-}
-
-.right {
-	display: flex;
-	height: 100%;
-	overflow: auto;
 }
 
 #anchor-wrapper{
@@ -132,47 +75,6 @@ html, body {
 	font-size: 20px;
 }
 
-h1, h2, h3 {
-	color: var(--accent-color);
-}
-
-.accented {
-	color: var(--accent-color);
-}
-
-h1, h2, h3, h4, h5, h6 {
-	font-weight: bold;
-	margin: 0;
-	padding: 4px;
-}
-
-h1 { font-size: 1.75em; }
-h2 { font-size: 1.5em; }
-h3 { font-size: 1.25em; }
-h4 { font-size: 1em; }
-
-
-li {
-	margin: 8px 0;
-}
-
-.pagelabel {
-	bottom: 0;
-	flex-direction: row-reverse;
-	position: absolute;
-	right: 0;
-	visibility: hidden;
-}
-
-
-a {
-	color: var(--accent-color);
-}
-
-.obfuscated {
-	display: none;
-}
-
 #contact {
 	align-items: center;
 	display: flex;
@@ -184,6 +86,81 @@ a {
 	width: 100%;
 }
 
+.container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	margin: 0 auto;
+	width: 800px;
+}
+
+.container > div {
+	display: flex;
+}
+
+.sidebar {
+	flex: 1;
+	flex-direction: column;
+}
+
+.content.right {
+	flex-direction: column;
+}
+
+.content-item-title {
+    display: flex;
+    justify-content: space-between;
+	width: 100%;
+}
+
+.content-item-title > div > * {
+	margin: 5px 0;
+}
+
+.content {
+	flex: 3;
+}
+
+.content-item {
+	margin: 15px 0 25px 0;
+}
+
+.sidebar-item {
+	margin: 10px 0;
+}
+
+.sidebar-item-list {
+	line-height: 0.8em;
+}
+
+.left {
+	display: flex;
+	height: 100%;
+	overflow: auto;
+}
+
+.right {
+	display: flex;
+	height: 100%;
+	overflow: auto;
+}
+
+.accented {
+	color: var(--accent-color);
+}
+
+.pagelabel {
+	bottom: 0;
+	flex-direction: row-reverse;
+	position: absolute;
+	right: 0;
+	visibility: hidden;
+}
+
+.obfuscated {
+	display: none;
+}
+
 .contact-item {
 	flex: 1;
 }
@@ -192,7 +169,33 @@ a {
 	display: none;
 }
 
+.footer {
+	height: 100px;
+	text-align: center;
+	width: 100%;
+}
+
+.timeframe {
+	align-items: center;
+}
+
 @media print {
+	.one-page {
+		box-sizing: border-box;
+		display: block;
+		height: 100vh;
+		margin: 0;
+		padding: 0;
+		page-break-after: always;
+		page-break-before: always;
+		position: relative;
+		width: 100%;
+	}
+	
+	.one-page:first-of-type {
+		page-break-before: avoid;
+	}
+	
 	.hide-from-print {
 		display: none;
 	}
@@ -209,14 +212,4 @@ a {
 		color: initial;
 		text-decoration: none;
 	}
-}
-
-.footer {
-	height: 100px;
-	text-align: center;
-	width: 100%;
-}
-
-.timeframe {
-	align-items: center;
 }
