@@ -188,14 +188,23 @@ a {
 	flex: 1;
 }
 
+.print-only {
+	display: none;
+}
+
 @media print {
 	.hide-from-print {
 		display: none;
 	}
+	
+	.print-only {
+		display: unset;
+	}
+
 	.pagelabel {
 		visibility: visible;
 	}
-	/* no link decorations on print */
+
 	a {
 		color: initial;
 		text-decoration: none;
