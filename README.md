@@ -36,6 +36,9 @@ as demonstrated in the [sample JSON file](https://github.com/Elgenzay/jason.json
 	"env_var": "EMAIL"
 }
 ```
+Note that `FILE_NAME` can be overridden with the `file` url query parameter.  
+`file` must be alphanumeric, and match the name of a json file in `web/static/data/`.  
+For instance, `http://127.0.0.1/?file=sample` will use data from `web/static/data/sample.json`.
 
 ## Configure TLS (optional)
 

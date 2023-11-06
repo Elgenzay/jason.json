@@ -66,12 +66,21 @@ pub async fn static_pages(path: PathBuf) -> Option<NamedFile> {
 	NamedFile::open(path).await.ok()
 }
 
-#[rocket::get("/")]
-pub fn page() -> Template {
-	let filename = std::env::var("FILE_NAME").expect("Missing environment variable: FILE_NAME");
+#[rocket::get("/?<file>")]
+pub fn page(file: Option<String>) -> Template {
+	let default_filename =
+		std::env::var("FILE_NAME").expect("Missing environment variable: FILE_NAME");
 
-	let jsondata = std::fs::read_to_string(format!("static/data/{}", filename))
-		.expect("Unable to read JSON file");
+	let filename = file
+		.filter(|s| s.chars().all(char::is_alphanumeric))
+		.map(|s| format!("{}.json", s))
+		.unwrap_or(default_filename.clone());
+
+	let jsondata = match std::fs::read_to_string(format!("static/data/{}", filename)) {
+		Ok(data) => data,
+		Err(_) => std::fs::read_to_string(format!("static/data/{}", default_filename))
+			.expect("Unable to read JSON file"),
+	};
 
 	let mut resume: Resume = serde_json::from_str(&jsondata).expect("Unable to parse JSON file");
 
