@@ -4,6 +4,7 @@ use std::path::{Path, PathBuf};
 use rocket::catch;
 use rocket::fs::{relative, NamedFile};
 use rocket::response::Redirect;
+use rocket::serde::json::Json;
 use rocket::shield::{Hsts, Shield};
 use rocket::time::Duration;
 use rocket_dyn_templates::Template;
@@ -104,7 +105,7 @@ pub fn page(file: Option<String>) -> Template {
 fn rocket() -> _ {
 	dotenvy::dotenv().ok();
 	rocket::build()
-		.mount("/", rocket::routes![page, static_pages])
+		.mount("/", rocket::routes![page, static_pages, version])
 		.register("/", rocket::catchers![not_found])
 		.attach(Template::fairing())
 		.attach(Shield::default().enable(Hsts::IncludeSubDomains(Duration::new(31536000, 0))))
@@ -113,4 +114,16 @@ fn rocket() -> _ {
 #[catch(404)]
 pub fn not_found() -> Redirect {
 	Redirect::to("/")
+}
+
+#[derive(Serialize)]
+pub struct VersionInfo {
+	version: String,
+}
+
+#[rocket::get("/version")]
+pub fn version() -> Json<VersionInfo> {
+	Json(VersionInfo {
+		version: env!("CARGO_PKG_VERSION").to_string(),
+	})
 }
