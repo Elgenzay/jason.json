@@ -90,7 +90,9 @@ pub fn page(file: Option<String>) -> Template {
 			let value = std::env::var(env_var)
 				.unwrap_or_else(|_| panic!("Missing environment variable: {}", env_var));
 
-			let value_base64 = base64::encode(value);
+			let value_base64 =
+				base64::Engine::encode(&base64::engine::general_purpose::STANDARD_NO_PAD, value);
+
 			let value_base64_rev = value_base64.chars().rev().collect();
 			contact_item.value = Some(value_base64_rev);
 		}
