@@ -1,9 +1,12 @@
 [default]
+port = 0
+
+[production]
 port = 443
 
-[default.tls]
+[production.tls]
 certs = "../tls/fullchain.pem"
 key = "../tls/privkey.pem"
 
-[default.rocket_dyn_templates]
+[rocket_dyn_templates]
 dir = "content"

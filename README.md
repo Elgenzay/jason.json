@@ -57,6 +57,9 @@ Change the contents of `web/Rocket.toml` to:
 ```toml
 [default]
 port = 80
+
+[rocket_dyn_templates]
+dir = "content"
 ```
 
 
@@ -73,7 +76,7 @@ StartLimitIntervalSec=0
 [Service]
 User=root
 WorkingDirectory=/jason.json/web
-Environment="ROCKET_ENV=prod"
+Environment="ROCKET_PROFILE=production"
 Environment="ROCKET_ADDRESS={IP_HERE}"
 Environment="ROCKET_LOG=critical"
 ExecStart=/jason.json/target/release/web
@@ -95,7 +98,7 @@ StartLimitIntervalSec=0
 [Service]
 User=root
 WorkingDirectory=/jason.json/https-redirect
-Environment="ROCKET_ENV=prod"
+Environment="ROCKET_PROFILE=production"
 Environment="ROCKET_ADDRESS={IP_HERE}"
 Environment="ROCKET_LOG=critical"
 ExecStart=/jason.json/target/release/https-redirect
