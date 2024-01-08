@@ -1,0 +1,8 @@
+[default]
+port = 0
+
+[production]
+port = 80
+
+[rocket_dyn_templates]
+dir = "content"

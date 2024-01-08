@@ -1,6 +1,14 @@
-[workspace]
+[package]
+name = "jason_json"
+version = "1.2.0"
+edition = "2021"
 
-members = [
-    "https-redirect",
-    "web",
-]
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rocket = { version = "0.5.0", features = ["json"] }
+dotenvy = "0.15.7"
+serde = "1.0.193"
+serde_json = "1.0.108"
+rocket_dyn_templates = { version = "0.1.0", features = ["tera"] }
+base64 = "0.21.5"

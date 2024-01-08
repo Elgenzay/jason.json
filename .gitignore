@@ -1,13 +1,10 @@
 target/
-Cargo.lock
 .env
-/tls/fullchain.pem
-/tls/privkey.pem
 
-/web/static/*
-!/web/static/data/
-!/web/static/obfuscation.js
-!/web/static/style.css
+/static/*
+!/static/data/
+!/static/obfuscation.js
+!/static/style.css
 
-/web/static/data/*
-!/web/static/data/sample.json
+/static/data/*
+!/static/data/sample.json
