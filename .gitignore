@@ -8,3 +8,4 @@ target/
 
 /static/data/*
 !/static/data/sample.json
+/docker-compose.yml
