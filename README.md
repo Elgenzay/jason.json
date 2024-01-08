@@ -1,9 +1,9 @@
 # jason.json
 
-This is a dynamic resume site. Content is pulled from [a JSON file](https://github.com/Elgenzay/jason.json/blob/main/web/static/data/sample.json) and rendered with [Tera](https://crates.io/crates/tera).
+This is a dynamic resume site. Content is pulled from [a JSON file](https://github.com/Elgenzay/jason.json/blob/main/static/data/sample.json) and rendered with [Tera](https://crates.io/crates/tera).
 
 
-## Unix setup
+## Setup
 Clone and build:  
 `cd` to your preferred project directory and run:
 ```sh
@@ -12,8 +12,10 @@ $ cd jason.json
 $ cargo build --release
 ```
 
-- Create `favicon.ico`
-- Create `web/static/data/{YOUR_NAME}.json`, using the [sample](https://github.com/Elgenzay/jason.json/blob/main/web/static/data/sample.json) as a reference.
+Alternatively, you can build an image from the provided Dockerfile.
+
+- Create `/static/favicon.ico`
+- Create `/static/data/{YOUR_NAME}.json`, using the [sample](https://github.com/Elgenzay/jason.json/blob/main/web/static/data/sample.json) as a reference.
 
 
 - Create `.env`:
@@ -39,84 +41,3 @@ as demonstrated in the [sample JSON file](https://github.com/Elgenzay/jason.json
 Note that `FILE_NAME` can be overridden with the `file` url query parameter.  
 `file` must be alphanumeric, and match the name of a json file in `web/static/data/`.  
 For instance, `http://127.0.0.1/?file=sample` will use data from `web/static/data/sample.json`.
-
-## Configure TLS (optional)
-
-### With TLS:
-
-[Get your certificate](https://certbot.eff.org/) and run (from project root):
-```sh
-$ cd tls/
-$ ln -s /etc/letsencrypt/live/{DOMAIN}/fullchain.pem fullchain.pem
-$ ln -s /etc/letsencrypt/live/{DOMAIN}/privkey.pem privkey.pem
-```
-
-### Without TLS:
-Change the contents of `web/Rocket.toml` to:
-
-```toml
-[default]
-port = 80
-
-[rocket_dyn_templates]
-dir = "content"
-```
-
-
-## Create services
-This section assumes a project directory at `/jason.json`.
-
-Create `/etc/systemd/system/web.service`:
-```
-[Unit]
-Description=Web
-StartLimitBurst=5
-StartLimitIntervalSec=0
-
-[Service]
-User=root
-WorkingDirectory=/jason.json/web
-Environment="ROCKET_PROFILE=production"
-Environment="ROCKET_ADDRESS={IP_HERE}"
-Environment="ROCKET_LOG=critical"
-ExecStart=/jason.json/target/release/web
-Restart=always
-RestartSec=5
-
-[Install]
-WantedBy=multi-user.target
-```
-
-
-Create `/etc/systemd/system/https_redirect.service` (unless running without TLS):
-```
-[Unit]
-Description=HTTPS Redirect
-StartLimitBurst=5
-StartLimitIntervalSec=0
-
-[Service]
-User=root
-WorkingDirectory=/jason.json/https-redirect
-Environment="ROCKET_PROFILE=production"
-Environment="ROCKET_ADDRESS={IP_HERE}"
-Environment="ROCKET_LOG=critical"
-ExecStart=/jason.json/target/release/https-redirect
-Restart=always
-RestartSec=5
-
-[Install]
-WantedBy=multi-user.target
-```
-
-Start the web service:
-```sh
-$ systemctl enable web
-$ systemctl start web
-```
-
-If using TLS, also run:
-```sh
-$ systemctl enable https_redirect
-$ systemctl start https_redirect
-```
