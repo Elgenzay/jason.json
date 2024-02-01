@@ -151,7 +151,6 @@ a {
 }
 
 .pagelabel {
-	bottom: 0;
 	flex-direction: row-reverse;
 	margin: 20px;
 	position: absolute;
