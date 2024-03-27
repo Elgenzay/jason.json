@@ -15,7 +15,7 @@ $ cargo build --release
 Alternatively, you can build an image from the provided Dockerfile.
 
 - Create `/static/favicon.ico`
-- Create `/static/data/{YOUR_NAME}.json`, using the [sample](https://github.com/Elgenzay/jason.json/blob/main/web/static/data/sample.json) as a reference.
+- Create `/static/data/{YOUR_NAME}.json`, using the [sample](https://github.com/Elgenzay/jason.json/blob/main/static/data/sample.json) as a reference.
 
 
 - Create `.env`:
@@ -31,7 +31,7 @@ Example:
 EMAIL = "{OPTIONAL_EMAIL}"
 ```
 To obfuscate a contact field, use the environment variable name in the "env_var" field of the contact item,  
-as demonstrated in the [sample JSON file](https://github.com/Elgenzay/jason.json/blob/main/web/static/data/sample.json):
+as demonstrated in the [sample JSON file](https://github.com/Elgenzay/jason.json/blob/main/static/data/sample.json):
 ```JSON
 {
 	"label": "Email",
