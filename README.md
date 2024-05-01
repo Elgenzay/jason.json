@@ -15,8 +15,9 @@ $ cargo build --release
 Alternatively, you can build an image from the provided Dockerfile.
 
 - Create `/static/favicon.ico`
-- Create `/static/data/{YOUR_NAME}.json`, using the [sample](https://github.com/Elgenzay/jason.json/blob/main/static/data/sample.json) as a reference.
-
+- Create `/static/data/{YOUR_NAME}.json`, using the [sample](https://github.com/Elgenzay/jason.json/blob/main/static/data/sample.json) as a reference.  
+Optionally, you can also provide a `pdf` key in the json file containing the file name (without ".pdf" or the path) of a corresponding PDF file in `/static/data/`, eg: `"pdf": "sample"` for `/static/data/sample.pdf`  
+This will replace the print link with a link to the PDF file for a more consistent print layout.
 
 - Create `.env`:
 ```env

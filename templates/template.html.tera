@@ -120,9 +120,15 @@
 	</div>
 	{% endfor %}
 	<div class="footer hide-from-print">
+		{% if data.pdf %}
+		<a href="/data/{{ data.pdf }}.pdf">
+			Open as PDF
+		</a>
+		{% else %}
 		<a href="javascript:window.print();">
 			Print this document
 		</a>
+		{% endif %}
 	</div>
 </body>
 

@@ -15,6 +15,7 @@ struct Resume {
 	page_title: String,
 	pages: Vec<Page>,
 	header: Header,
+	pdf: Option<String>,
 }
 
 #[derive(Serialize, Deserialize)]
