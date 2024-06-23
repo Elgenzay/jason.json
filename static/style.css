@@ -177,7 +177,7 @@ a {
 }
 
 .timeframe {
-	align-items: center;
+	text-align: right;
 }
 
 @media print {

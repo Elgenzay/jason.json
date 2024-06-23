@@ -95,7 +95,14 @@
 									</h4>
 								</div>
 								<div class="timeframe">
-									{{ contentitem.timeframe }}
+									<div>
+										{{ contentitem.timeframe }}
+									</div>
+									{% if contentitem.timeframe_subtitle %}
+									<div>
+										{{ contentitem.timeframe_subtitle }}
+									</div>
+									{% endif %}
 								</div>
 							</div>
 							<div>

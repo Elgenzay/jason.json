@@ -56,6 +56,7 @@ struct ContentItem {
 	title: String,
 	subtitle: String,
 	timeframe: String,
+	timeframe_subtitle: Option<String>,
 	bullets: Vec<String>,
 }
 
