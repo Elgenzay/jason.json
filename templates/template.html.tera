@@ -5,6 +5,11 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>{{ data.page_title }}</title>
+	{% if data.accent_color %}
+	<link rel="stylesheet" href="/accent/{{ data.accent_color }}.css">
+	{% else %}
+	<link rel="stylesheet" href="/accent/333333.css">
+	{% endif %}
 	<link rel="stylesheet" href="style.css">
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
 	<script src="obfuscation.js"></script>

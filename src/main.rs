@@ -1,17 +1,17 @@
-use std::collections::HashMap;
-use std::path::{Path, PathBuf};
-
 use rocket::catch;
 use rocket::fs::{relative, NamedFile};
-use rocket::response::Redirect;
+use rocket::response::{content, Redirect};
 use rocket::serde::json::Json;
 use rocket::shield::{Hsts, Shield};
 use rocket::time::Duration;
 use rocket_dyn_templates::Template;
 use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
+use std::path::{Path, PathBuf};
 
 #[derive(Serialize, Deserialize)]
 struct Resume {
+	accent_color: Option<String>,
 	page_title: String,
 	pages: Vec<Page>,
 	header: Header,
@@ -109,7 +109,7 @@ pub fn page(file: Option<String>) -> Template {
 fn rocket() -> _ {
 	dotenvy::dotenv().ok();
 	rocket::build()
-		.mount("/", rocket::routes![page, static_pages, version])
+		.mount("/", rocket::routes![page, static_pages, accent, version])
 		.register("/", rocket::catchers![not_found])
 		.attach(Template::fairing())
 		.attach(Shield::default().enable(Hsts::IncludeSubDomains(Duration::new(31536000, 0))))
@@ -130,4 +130,20 @@ pub fn version() -> Json<VersionInfo> {
 	Json(VersionInfo {
 		version: env!("CARGO_PKG_VERSION").to_string(),
 	})
+}
+
+#[rocket::get("/accent/<filename>")]
+fn accent(filename: String) -> Option<content::RawCss<String>> {
+	if filename.len() == 10 && filename.ends_with(".css") {
+		let hexcode = &filename[0..6];
+
+		if hexcode.chars().all(|c| c.is_ascii_hexdigit()) {
+			return Some(content::RawCss(format!(
+				":root {{ --accent-color: #{}; }}",
+				hexcode
+			)));
+		}
+	}
+
+	None
 }

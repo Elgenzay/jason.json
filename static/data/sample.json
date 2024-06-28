@@ -1,5 +1,6 @@
 {
 	"page_title": "Resume demo",
+	"accent_color": "DF2C2A",
 	"header": {
 		"name": "Ferris",
 		"title": "Rustacean",
