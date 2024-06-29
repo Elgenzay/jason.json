@@ -1,9 +1,10 @@
 [package]
 name = "jason_json"
 version = "1.3.0"
+authors = ["Jason <jason@elg.gg>"]
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+repository = "https://github.com/Elgenzay/jason.json"
+license = "MIT-0"
 
 [dependencies]
 rocket = { version = "0.5.1", features = ["json"] }
