@@ -1,6 +1,7 @@
 {
 	"page_title": "Resume demo",
 	"accent_color": "DF2C2A",
+	"font_size": "16px",
 	"header": {
 		"name": "Ferris",
 		"title": "Rustacean",

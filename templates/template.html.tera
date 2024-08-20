@@ -10,6 +10,11 @@
 	{% else %}
 	<link rel="stylesheet" href="/accent/333333.css">
 	{% endif %}
+	{% if data.font_size %}
+	<link rel="stylesheet" href="/fontsize/{{ data.font_size }}.css">
+	{% else %}
+	<link rel="stylesheet" href="/fontsize/16px.css">
+	{% endif %}
 	<link rel="stylesheet" href="style.css">
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
 	<script src="obfuscation.js"></script>

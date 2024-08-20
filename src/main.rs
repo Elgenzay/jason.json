@@ -12,6 +12,7 @@ use std::path::{Path, PathBuf};
 #[derive(Serialize, Deserialize)]
 struct Resume {
 	accent_color: Option<String>,
+	font_size: Option<String>,
 	page_title: String,
 	pages: Vec<Page>,
 	header: Header,
@@ -109,7 +110,10 @@ pub fn page(file: Option<String>) -> Template {
 fn rocket() -> _ {
 	dotenvy::dotenv().ok();
 	rocket::build()
-		.mount("/", rocket::routes![page, static_pages, accent, version])
+		.mount(
+			"/",
+			rocket::routes![page, static_pages, accent, version, fontsize],
+		)
 		.register("/", rocket::catchers![not_found])
 		.attach(Template::fairing())
 		.attach(Shield::default().enable(Hsts::IncludeSubDomains(Duration::new(31536000, 0))))
@@ -143,6 +147,18 @@ fn accent(filename: String) -> Option<content::RawCss<String>> {
 				hexcode
 			)));
 		}
+	}
+
+	None
+}
+
+#[rocket::get("/fontsize/<filename>")]
+fn fontsize(filename: String) -> Option<content::RawCss<String>> {
+	if filename.ends_with(".css") {
+		return Some(content::RawCss(format!(
+			":root {{ --font-size: {}; }}",
+			&filename[0..filename.len() - 4]
+		)));
 	}
 
 	None
