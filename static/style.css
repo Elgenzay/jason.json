@@ -168,7 +168,6 @@ a {
 
 .pagelabel {
 	flex-direction: row-reverse;
-	margin: 20px;
 	position: absolute;
 	right: 0;
 	visibility: hidden;
