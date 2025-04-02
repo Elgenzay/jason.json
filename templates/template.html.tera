@@ -27,16 +27,16 @@
 			{% if loop.index == 1 %}
 			<div id="header">
 				<div id="name">
-					{{ data.header.name | safe}}
+					{{ data.header.name | safe }}
 				</div>
 				<div id="title">
-					{{ data.header.title }}
+					{{ data.header.title | safe }}
 				</div>
 				<div id="contact">
 					{% for contact_item in data.header.contact %}
 					<div class="contact-item">
 						<div class="accented">
-							{{ contact_item.label }}
+							{{ contact_item.label | safe }}
 						</div>
 						{% set class_name = "" %}
 						{% set is_obfuscated = false %}
@@ -63,7 +63,7 @@
 					<div>
 						<hr>
 					</div>
-					{{ data.header.anchor }}
+					{{ data.header.anchor | safe }}
 					<div>
 						<hr>
 					</div>
@@ -75,11 +75,11 @@
 					{% for sidebaritem in page.sidebar %}
 					<div class="sidebar-item">
 						<h3>
-							{{ sidebaritem.label }}
+							{{ sidebaritem.label | safe }}
 						</h3>
 						<ul class="sidebar-item-list">
 							{% for item in sidebaritem.items %}
-							<li>{{ item }}</li>
+							<li>{{ item | safe }}</li>
 							{% endfor %}
 						</ul>
 					</div>
@@ -89,7 +89,7 @@
 					{% for content in page.content %}
 					<div>
 						<h1>
-							{{ content.label }}
+							{{ content.label | safe }}
 						</h1>
 					</div>
 					<div>
@@ -98,7 +98,7 @@
 							<div class="content-item-title">
 								<div>
 									<h3>
-										{{ contentitem.title }}
+										{{ contentitem.title | safe }}
 									</h3>
 									<h4>
 										{{ contentitem.subtitle | safe }}
@@ -106,11 +106,11 @@
 								</div>
 								<div class="timeframe">
 									<div>
-										{{ contentitem.timeframe }}
+										{{ contentitem.timeframe | safe }}
 									</div>
 									{% if contentitem.timeframe_subtitle %}
 									<div>
-										{{ contentitem.timeframe_subtitle }}
+										{{ contentitem.timeframe_subtitle | safe }}
 									</div>
 									{% endif %}
 								</div>
