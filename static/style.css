@@ -229,3 +229,26 @@ a {
 		text-decoration: none;
 	}
 }
+
+.scale-wrapper {
+	overflow-x: hidden;
+	text-align: center;
+}
+
+.scale-inner {
+	display: inline-block;
+	text-align: left;
+	transform-origin: top left;
+	width: 800px;
+}
+
+@media print {
+	.scale-wrapper {
+		overflow: visible;
+	}
+
+	.scale-inner {
+		display: block;
+		transform: none !important;
+	}
+}

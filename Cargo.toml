@@ -1,6 +1,6 @@
 [package]
 name = "jason_json"
-version = "1.3.1"
+version = "1.4.0"
 authors = ["Jason <jason@elg.gg>"]
 edition = "2021"
 repository = "https://github.com/Elgenzay/jason.json"
@@ -9,7 +9,7 @@ license = "MIT-0"
 [dependencies]
 rocket = { version = "0.5.1", features = ["json"] }
 dotenvy = "0.15.7"
-serde = "1.0.217"
-serde_json = "1.0.134"
+serde = "1.0.219"
+serde_json = "1.0.140"
 rocket_dyn_templates = { version = "0.2.0", features = ["tera"] }
 base64 = "0.22.1"

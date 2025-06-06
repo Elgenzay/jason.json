@@ -5,6 +5,7 @@ target/
 !/static/data/
 !/static/obfuscation.js
 !/static/style.css
+!/static/scale.js
 
 /static/data/*
 !/static/data/sample.json

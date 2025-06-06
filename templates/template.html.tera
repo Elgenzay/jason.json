@@ -2,151 +2,156 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>{{ data.page_title }}</title>
-	{% if data.accent_color %}
-	<link rel="stylesheet" href="/accent/{{ data.accent_color }}.css">
-	{% else %}
-	<link rel="stylesheet" href="/accent/333333.css">
-	{% endif %}
-	{% if data.font_size %}
-	<link rel="stylesheet" href="/fontsize/{{ data.font_size }}.css">
-	{% else %}
-	<link rel="stylesheet" href="/fontsize/16px.css">
-	{% endif %}
-	<link rel="stylesheet" href="style.css">
-	<link rel="icon" href="/favicon.ico" type="image/x-icon">
-	<script src="obfuscation.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ data.page_title }}</title>
+    {% if data.accent_color %}
+    <link rel="stylesheet" href="/accent/{{ data.accent_color }}.css">
+    {% else %}
+    <link rel="stylesheet" href="/accent/333333.css">
+    {% endif %}
+    {% if data.font_size %}
+    <link rel="stylesheet" href="/fontsize/{{ data.font_size }}.css">
+    {% else %}
+    <link rel="stylesheet" href="/fontsize/16px.css">
+    {% endif %}
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script src="obfuscation.js"></script>
+    <script src="scale.js"></script>
 </head>
 
 <body>
-	{% for page in data.pages %}
-	<div class="one-page">
-		<div class="container">
-			{% if loop.index == 1 %}
-			<div id="header">
-				<div id="name">
-					{{ data.header.name | safe }}
-				</div>
-				<div id="title">
-					{{ data.header.title | safe }}
-				</div>
-				<div id="contact">
-					{% for contact_item in data.header.contact %}
-					<div class="contact-item">
-						<div class="accented">
-							{{ contact_item.label | safe }}
-						</div>
-						{% set class_name = "" %}
-						{% set is_obfuscated = false %}
+    <div class="scale-wrapper">
+        <div class="scale-inner">
+            {% for page in data.pages %}
+            <div class="one-page">
+                <div class="container">
+                    {% if loop.index == 1 %}
+                    <div id="header">
+                        <div id="name">
+                            {{ data.header.name | safe }}
+                        </div>
+                        <div id="title">
+                            {{ data.header.title | safe }}
+                        </div>
+                        <div id="contact">
+                            {% for contact_item in data.header.contact %}
+                            <div class="contact-item">
+                                <div class="accented">
+                                    {{ contact_item.label | safe }}
+                                </div>
+                                {% set class_name = "" %}
+                                {% set is_obfuscated = false %}
 
-						{% if contact_item.env_var is defined and contact_item.env_var %}
-						{% set is_obfuscated = true %}
-						{% endif %}
+                                {% if contact_item.env_var is defined and contact_item.env_var %}
+                                {% set is_obfuscated = true %}
+                                {% endif %}
 
-						{% if is_obfuscated %}
-						<div class="obfuscation-note">
-							obfuscating...
-							{% set class_name = "obfuscated" %}
-						</div>
-						{% endif %}
+                                {% if is_obfuscated %}
+                                <div class="obfuscation-note">
+                                    obfuscating...
+                                    {% set class_name = "obfuscated" %}
+                                </div>
+                                {% endif %}
 
-						<div class="{{ class_name }}">
-							{{ contact_item.value | safe }}
-						</div>
+                                <div class="{{ class_name }}">
+                                    {{ contact_item.value | safe }}
+                                </div>
 
-					</div>
-					{% endfor %}
-				</div>
-				<div id="anchor-wrapper">
-					<div>
-						<hr>
-					</div>
-					{{ data.header.anchor | safe }}
-					<div>
-						<hr>
-					</div>
-				</div>
-			</div>
-			{% endif %}
-			<div>
-				<div class="sidebar left">
-					{% for sidebaritem in page.sidebar %}
-					<div class="sidebar-item">
-						<h3>
-							{{ sidebaritem.label | safe }}
-						</h3>
-						<ul class="sidebar-item-list">
-							{% for item in sidebaritem.items %}
-							<li>{{ item | safe }}</li>
-							{% endfor %}
-						</ul>
-					</div>
-					{% endfor %}
-				</div>
-				<div class="content right">
-					{% for content in page.content %}
-					<div>
-						<h1>
-							{{ content.label | safe }}
-						</h1>
-					</div>
-					<div>
-						{% for contentitem in content.items %}
-						<div class="content-item">
-							<div class="content-item-title">
-								<div>
-									<h3>
-										{{ contentitem.title | safe }}
-									</h3>
-									<h4>
-										{{ contentitem.subtitle | safe }}
-									</h4>
-								</div>
-								<div class="timeframe">
-									<div>
-										{{ contentitem.timeframe | safe }}
-									</div>
-									{% if contentitem.timeframe_subtitle %}
-									<div>
-										{{ contentitem.timeframe_subtitle | safe }}
-									</div>
-									{% endif %}
-								</div>
-							</div>
-							<div>
-								<ul>
-									{% for bullet in contentitem.bullets %}
-									<li>
-										{{ bullet | safe }}
-									</li>
-									{% endfor %}
-								</ul>
-							</div>
-						</div>
-						{% endfor %}
-					</div>
-					{% endfor %}
-				</div>
-			</div>
-			<div class="pagelabel">
-				{{ loop.index }} / {{ data.pages | length }}
-			</div>
-		</div>
-	</div>
-	{% endfor %}
-	<div class="footer hide-from-print">
-		{% if data.pdf %}
-		<a href="/data/{{ data.pdf }}.pdf">
-			Open as PDF
-		</a>
-		{% else %}
-		<a href="javascript:window.print();">
-			Print this document
-		</a>
-		{% endif %}
-	</div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div id="anchor-wrapper">
+                            <div>
+                                <hr>
+                            </div>
+                            {{ data.header.anchor | safe }}
+                            <div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div>
+                        <div class="sidebar left">
+                            {% for sidebaritem in page.sidebar %}
+                            <div class="sidebar-item">
+                                <h3>
+                                    {{ sidebaritem.label | safe }}
+                                </h3>
+                                <ul class="sidebar-item-list">
+                                    {% for item in sidebaritem.items %}
+                                    <li>{{ item | safe }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="content right">
+                            {% for content in page.content %}
+                            <div>
+                                <h1>
+                                    {{ content.label | safe }}
+                                </h1>
+                            </div>
+                            <div>
+                                {% for contentitem in content.items %}
+                                <div class="content-item">
+                                    <div class="content-item-title">
+                                        <div>
+                                            <h3>
+                                                {{ contentitem.title | safe }}
+                                            </h3>
+                                            <h4>
+                                                {{ contentitem.subtitle | safe }}
+                                            </h4>
+                                        </div>
+                                        <div class="timeframe">
+                                            <div>
+                                                {{ contentitem.timeframe | safe }}
+                                            </div>
+                                            {% if contentitem.timeframe_subtitle %}
+                                            <div>
+                                                {{ contentitem.timeframe_subtitle | safe }}
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <ul>
+                                            {% for bullet in contentitem.bullets %}
+                                            <li>
+                                                {{ bullet | safe }}
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="pagelabel">
+                        {{ loop.index }} / {{ data.pages | length }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="footer hide-from-print">
+                {% if data.pdf %}
+                <a href="/data/{{ data.pdf }}.pdf">
+                    Open as PDF
+                </a>
+                {% else %}
+                <a href="javascript:window.print();">
+                    Print this document
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
