@@ -1,7 +1,7 @@
-FROM rust:1.75-alpine
+FROM rust:latest
 WORKDIR /usr/src/jason_json
 ENV ROCKET_PROFILE=production
-RUN apk update && apk add --no-cache build-base
+RUN apt-get update && apt-get install -y build-essential
 
 COPY Cargo.toml Rocket.toml Cargo.lock .env ./
 COPY src ./src
