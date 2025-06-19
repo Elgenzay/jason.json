@@ -8,7 +8,6 @@ html,
 body {
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 	font-size: var(--font-size);
-	height: 100%;
 	line-height: 1.2em;
 }
 
@@ -105,7 +104,6 @@ a {
 .container {
 	display: flex;
 	flex-direction: column;
-	height: 100%;
 	margin: 0 auto;
 	padding: 10px;
 	width: 800px;
@@ -152,13 +150,11 @@ a {
 
 .left {
 	display: flex;
-	height: 100%;
 	overflow: auto;
 }
 
 .right {
 	display: flex;
-	height: 100%;
 	overflow: auto;
 }
 
@@ -195,7 +191,28 @@ a {
 	text-align: right;
 }
 
+.scale-wrapper {
+	overflow-x: hidden;
+	text-align: center;
+}
+
+.scale-inner {
+	display: inline-block;
+	text-align: left;
+	transform-origin: top left;
+	width: 800px;
+}
+
 @media print {
+	a {
+		color: initial;
+		text-decoration: none;
+	}
+		
+	hr {
+		border-top-width: 2px;
+	}
+	
 	.one-page {
 		box-sizing: border-box;
 		display: block;
@@ -224,25 +241,6 @@ a {
 		visibility: visible;
 	}
 
-	a {
-		color: initial;
-		text-decoration: none;
-	}
-}
-
-.scale-wrapper {
-	overflow-x: hidden;
-	text-align: center;
-}
-
-.scale-inner {
-	display: inline-block;
-	text-align: left;
-	transform-origin: top left;
-	width: 800px;
-}
-
-@media print {
 	.scale-wrapper {
 		overflow: visible;
 	}
