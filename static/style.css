@@ -194,6 +194,7 @@ a {
 .scale-wrapper {
 	overflow-x: hidden;
 	text-align: center;
+    overflow: hidden;
 }
 
 .scale-inner {
