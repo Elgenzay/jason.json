@@ -126,6 +126,9 @@
                                             </li>
                                             {% endfor %}
                                         </ul>
+                                        {% if contentitem.footnote %}
+                                        {{ contentitem.footnote | safe }}
+                                        {% endif %}
                                     </div>
                                 </div>
                                 {% endfor %}

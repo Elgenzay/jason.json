@@ -59,6 +59,7 @@ struct ContentItem {
 	timeframe: String,
 	timeframe_subtitle: Option<String>,
 	bullets: Vec<String>,
+	footnote: Option<String>,
 }
 
 #[rocket::get("/<path..>")]
