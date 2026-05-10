@@ -219,7 +219,6 @@ a {
 		height: 100vh;
 		margin: 0;
 		padding: 0;
-		page-break-after: always;
 		page-break-before: always;
 		position: relative;
 		width: 100%;
